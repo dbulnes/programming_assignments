@@ -25,11 +25,26 @@
 
 int stringToInt (const char * numberString)
 {
-    //Tracks the power of ten we are multiplying each digit by. Subtract 1 since a character array (string) starts at index 0.
-    int powerOfTen = (int) strlen(numberString) - 1;
+    //Tracks the power of ten we are multiplying each digit by. Initialized to one less than the length
+    //of the string input to account for 1s place of an integer.
+    //See below negative number check and power of ten math in the while loop.
+    int powerOfTen;
     int convertedInt = 0; //The int that will be returned.
     int digitFromString; //The int that holds each initial ASCII conversion for a char converted to a single digit int.
     
+    int negativeNumber; //Negative number flag.
+    //Handle negative integers. If found, raise the negativeNumber flag and increment the pointer to the next character.
+    //If negative, also decrement the power of ten exponent by 2 instead of 1, since there is one less numeric character in the string
+    //than the length of the whole string.
+    if ((negativeNumber = *numberString == '-')){
+        //negativeNumber = 1;
+        powerOfTen = (int) strlen(numberString) - 2;
+        numberString++;
+    } else {
+        //negativeNumber = 0;
+        powerOfTen = (int) strlen(numberString) - 1;
+    }
+        
     //Iterate over the string until we hit the NULL character at the end of the string.
     while (*numberString != '\0') {
         //Get the character digit and subtract '0', as the integer characters in the ASCII table are sequential.
@@ -57,13 +72,14 @@ int stringToInt (const char * numberString)
         convertedInt += realValueTerm; //Add the new term to the converted integer.
         powerOfTen--; //Decrement the power of ten since we go from highest order of magnitude to lowest.
         numberString++; //Increment the char pointer.
-    } 
-    return convertedInt;
+    }
+    
+    return negativeNumber ? -convertedInt : convertedInt;
 }
 
 int main(int argc, const char * argv[])
 {
-    const char * intString = "103906";
+    const char * intString = "-3906";
     int stringInt = stringToInt(intString);
     printf("%d\n", stringInt);
     return 0;
