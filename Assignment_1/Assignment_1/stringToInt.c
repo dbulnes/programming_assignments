@@ -63,7 +63,8 @@ int stringToInt (const char * numberString)
         /*
          * Mathematically, we are performing (realValueTerm = digitFromString * (10^powerOfTen))
          * If math.h was not included, and we don't have the pow() function, we could do something clever
-         * like continually bitshift left by 3, then bitshift left again by 1, thus multiplying by 10, and add our digit.
+         * like continually bitshift left by 3, then bitshift left again by 1, thus adding the product of 
+         * multiplying the converted int total by 10 and adding the current digit.
          * Formally: (convertedInt = (convertedInt<<3) + (convertedInt<<1) + digitFromString).
          * It was chosen not to do the conversion this way as it is not as readable or immediately transparent
          * in terms of the logic underlying the code.
@@ -79,9 +80,34 @@ int stringToInt (const char * numberString)
 
 int main(int argc, const char * argv[])
 {
-    const char * intString = "-3906";
-    int stringInt = stringToInt(intString);
-    printf("%d\n", stringInt);
-    return 0;
+    printf("Welcome to David Bulnes' string to int converter.\n **Input the escape key to exit.**\n");
+    
+    const int escapeKey = 27;
+    int bufferMax = 11; //over 11 characters, including a negative sign, will definitely overflow an int
+    char *inputString = (char*)malloc(bufferMax);
+    
+    int inputCharacterCount;
+    while (1) {
+        inputCharacterCount = 0;
+        printf("Enter a string to be converted to an int and press return:\n");
+        while (1) {
+            int inputChar = getchar();
+            
+            if (inputChar == '\n'){ //Return key pressed
+                //Indicate the end of the string
+                inputString[inputCharacterCount] = '\0';
+                break;
+            }
+            
+            if (inputChar == escapeKey) { //Escape key pressed
+                printf("\nExiting...\n");
+                return 0;
+            }
+            
+            inputString[inputCharacterCount] = inputChar;
+            inputCharacterCount++;
+        }
+        printf("Integer: %d\n", stringToInt(inputString));
+    }
 }
 
