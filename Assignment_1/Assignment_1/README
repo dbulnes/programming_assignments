@@ -1,0 +1,21 @@
+Assignment 1, String To Integer Conversion README
+
+Created by David Bulnes on 12/14/13
+
+Compiling program and creating an executable:
+	>make 
+	OR
+	>make stringToInt
+
+The program runs on a loop until the escape key is pressed followed by the return key.
+Example execution, input to, and output of stringToInt program:
+    >./stringToInt 
+	Welcome to David Bulnes' string to int converter.
+ 	**Input the escape key to exit.**
+	Enter a string to be converted to an int and press return:	
+    
+    >8341
+	Integer: 8341
+
+    >exit
+	Exiting…
