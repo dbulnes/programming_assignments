@@ -27,7 +27,7 @@
 //Negative values are allowed for publicationYear as representing B.C. years. 
 @property int publicationYear;
 
-- (Book *)initWithTitle:(NSString *)title
+- (id)initWithTitle:(NSString *)title
                  author:(NSString *)author
         publicationYear:(int)publicationYear;
 

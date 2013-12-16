@@ -23,7 +23,7 @@
 
 @implementation Book
 
-- (Book *)initWithTitle:(NSString *)title
+- (id)initWithTitle:(NSString *)title
                  author:(NSString *)author
         publicationYear:(int)publicationYear
 {
