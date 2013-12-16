@@ -97,13 +97,45 @@ void aligned_free(void *ptr) {
     free(originalAddress);
 }
 
-
+/** @function main
+ *  @brief Takes in bytes, alignment, and value to assign from command line arguments. 
+ *         Executes allocation, freeing, and value assignment twice.
+ *
+ *  @param arv[1] size_t bytes: The number of bytes to allocate.
+ *  @param arv[2] size_t alignment: The power of 2 from which to align the allocated memory.
+ *  @param arv[3] int value: The value to assign to the aligned and allocated memory.
+ *  @return int
+ */
 int main(int argc, const char * argv[])
 {
-    int *alignedMemory = (int *)aligned_malloc(6, 8);
-    *alignedMemory = (int)1024;
-    
-    aligned_free(alignedMemory);
-    return 0;
+    if (argc > 3) {
+        size_t bytes, alignment;
+        int value;
+        //Parse the byte and alignment and value arguments
+        if (!sscanf (argv[1], "%zu", &bytes) || !sscanf (argv[2], "%zu", &alignment) || !sscanf (argv[3], "%u", &value)) {
+            printf("Error: Invalid input type.\n");
+            return EXIT_FAILURE;
+        }
+        
+        //Align and free memory twice in a loop and print out pertinent values and addresses.
+        int mallocCount = 1;
+        while (mallocCount <= 2) {
+            printf("*****\nMemory Allocation Attempt #%d\n", mallocCount);
+            int *alignedMemory = (int *)aligned_malloc(bytes, alignment);
+            printf("Address of Originally Allocated Memory:\n%p\n", ((void **)alignedMemory)[-1]);
+            printf("Address of Aligned Memory:\n%p\n", alignedMemory);
+            printf("Assigning value of %d to %p\n", value, alignedMemory);
+            *alignedMemory = value;
+            printf("Value at Address %p : %d\n", alignedMemory, *alignedMemory);
+            printf("Freeing Address %p\n\n", alignedMemory);
+            aligned_free(alignedMemory);
+            mallocCount++;
+        }
+        
+        return EXIT_SUCCESS;
+    }
+    printf("Not enough arguments passed - specify a number of bytes, power of 2 alignment, and an integer value to assign.\n");
+    printf("Example: aligned_memory 8 8 35\n");
+    return EXIT_FAILURE;
 }
 

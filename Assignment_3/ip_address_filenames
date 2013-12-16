@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Created by David Bulnes on 12/15/13.
+# Assignment 3:
+# There are 1000 files located in a Unix directory tree under /repository.  
+# You are asked to provide a list of every filename that contains an IP address.  
+# How would you solve this problem?  Provide a working example.
+
+# Establish the pattern we are looking for- numbers between 0-255, 
+# with 0 only being allowed in the front of a sequence if by itself.
+# We are only dealing with IPv4 addresses in this assignment.  
+PATTERN="(25[0-5]|2[0-4][0-9]|[1][0-9][0-9]|[1-9][0-9]?|[0])"
+# Establish word boundaries for the regex, and look for the pattern, followed by a literal period (.),
+# followed by the pattern, 3 additional times. This requires a total of 4 pattern matches. 
+# Any more or any less is not a valid IPv4 address.
+REGEX="\b$PATTERN(\.$PATTERN){3}\b"
+# Run the find command for all files under the /repository directory tree. 
+# Pipe the output of find to grep and filter the results using $REGEX 
+# with the -E option for extended regular expression interpretation.
+find /repository -type f|grep -E $REGEX
