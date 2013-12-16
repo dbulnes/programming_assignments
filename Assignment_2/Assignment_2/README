@@ -1,4 +1,4 @@
-Assignment 3, Aligned Memory Allocation and Freeing README
+Assignment 2, Aligned Memory Allocation and Freeing README
 
 Created by David Bulnes on 12/15/13
 
@@ -7,15 +7,31 @@ Compiling program and creating an executable:
 	OR
 	>make aligned_memory
 
-The program runs on a loop until the escape key is pressed followed by the return key.
-Example execution, input to, and output of stringToInt program:
-    >./stringToInt 
-	Welcome to David Bulnes' string to int converter.
- 	**Input the escape key to exit.**
-	Enter a string to be converted to an int and press return:	
-    
-    >8341
-	Integer: 8341
+Running the program: 
+The program takes in three command line arguments and loops aligned memory
+allocation, assignment, and freeing twice to show proper freeing of the heap. 
+Argument 1: Number of bytes to allocate.
+Argument 2: Power of 2 from which to align allocated bytes.
+Argument 3: Value to assign to aligned allocated memory.
 
-    >exit
-	Exiting…
+Example:
+    >./aligned_memory 8 8 35 
+	*****
+	Memory Allocation Attempt #1
+	Address of Originally Allocated Memory:
+	0x7fb4505038b0
+	Address of Aligned Memory:
+	0x7fb4505038c0
+	Assigning value of 35 to 0x7fb4505038c0
+	Value at Address 0x7fb4505038c0 : 35
+	Freeing Address 0x7fb4505038c0
+
+	*****
+	Memory Allocation Attempt #2
+	Address of Originally Allocated Memory:
+	0x7fb4505038b0
+	Address of Aligned Memory:
+	0x7fb4505038c0
+	Assigning value of 35 to 0x7fb4505038c0
+	Value at Address 0x7fb4505038c0 : 35
+	Freeing Address 0x7fb4505038c0

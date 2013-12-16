@@ -1,0 +1,21 @@
+Assignment 3, IP Address Filename Search
+
+Created by David Bulnes on 12/14/13
+
+Searches the root /repository directory tree for each file with a valid IP
+address in the file name. 
+
+Setting script permissions and making script executable:
+    >sudo chmod 755 ip_address_filenames
+    >sudo chmod u+x ip_address_filenames
+
+Running the script example:
+    >./ip_address_filenames 
+	/repository/1.1.2.243
+	/repository/10.0.22.209
+	/repository/188.20.1.126
+	/repository/192.14.23.233
+	/repository/192.168.1.1 and_some_other_text
+	/repository/192.168.1.7
+	/repository/repo_sub_directory/14.25.111.2
+	/repository/repo_sub_directory/235.111.18.27
