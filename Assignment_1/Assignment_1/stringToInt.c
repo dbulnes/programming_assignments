@@ -23,6 +23,8 @@
 #include <stdlib.h>
 #include <math.h>
 
+#define escapeKey 27
+
 /** @function stringToInt
  *  @brief Converts a string input to its integer value.
  *
@@ -94,11 +96,10 @@ int main(int argc, const char * argv[])
 {
     printf("Welcome to David Bulnes' string to int converter.\n **Input the escape key to exit.**\n");
     
-    const int escapeKey = 27;
-    int bufferMax = 11; //over 11 characters, including a negative sign, will definitely overflow an int
+    int bufferMax = 11; //Over 11 characters, including a negative sign, will definitely overflow an int
     char *inputString = (char *)malloc(bufferMax);
+    int inputCharacterCount; //Stores the count of inputted characters.
     
-    int inputCharacterCount;
     while (1) {
         inputCharacterCount = 0;
         printf("Enter a string to be converted to an int and press return:\n");
@@ -108,7 +109,7 @@ int main(int argc, const char * argv[])
             if (inputChar == '\n'){ //Return key pressed
                 //Indicate the end of the string
                 inputString[inputCharacterCount] = '\0';
-                break;
+                break; //Exit loop, perform conversion
             }
             
             if (inputChar == escapeKey) { //Escape key pressed
