@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Created by David Bulnes on 12/15/13.
+# Created by David Bulnes on 12/14/13.
 # Assignment 3:
 # There are 1000 files located in a Unix directory tree under /repository.  
 # You are asked to provide a list of every filename that contains an IP address.  

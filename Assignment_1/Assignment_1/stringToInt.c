@@ -23,7 +23,13 @@
 #include <stdlib.h>
 #include <math.h>
 
-int stringToInt (const char * numberString)
+/** @function stringToInt
+ *  @brief Converts a string input to its integer value.
+ *
+ *  @param const char *bytes: The string to be converted to an integer.
+ *  @return int : The converted integer.
+ */
+int stringToInt (const char *numberString)
 {
     //Tracks the power of ten we are multiplying each digit by. Initialized to one less than the length
     //of the string input to account for 1s place of an integer.
@@ -78,6 +84,12 @@ int stringToInt (const char * numberString)
     return negativeNumber ? -convertedInt : convertedInt;
 }
 
+/** @function main
+ *  @brief Executes the main loop of the program. Continually loops and requests user input of a numeric string. 
+ *         Outputs the integer conversion. Exits when the escape key is pressed followed by the return key.
+ *
+ *  @return int
+ */
 int main(int argc, const char * argv[])
 {
     printf("Welcome to David Bulnes' string to int converter.\n **Input the escape key to exit.**\n");
@@ -101,7 +113,7 @@ int main(int argc, const char * argv[])
             
             if (inputChar == escapeKey) { //Escape key pressed
                 printf("\nExiting...\n");
-                return 0;
+                return EXIT_SUCCESS;
             }
             
             inputString[inputCharacterCount] = inputChar;
