@@ -7,7 +7,7 @@
 //
 
 /*
- Assignment:
+ Assignment 1:
  You may be familiar with the following C function from stdlib.h:
  
  int atoi(const char * str);
@@ -84,7 +84,7 @@ int main(int argc, const char * argv[])
     
     const int escapeKey = 27;
     int bufferMax = 11; //over 11 characters, including a negative sign, will definitely overflow an int
-    char *inputString = (char*)malloc(bufferMax);
+    char *inputString = (char *)malloc(bufferMax);
     
     int inputCharacterCount;
     while (1) {
